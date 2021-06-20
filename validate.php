@@ -1,12 +1,15 @@
 
 <?php
 
+require('user_validator.php');
 
 if(isset($_POST['submit'])){
 
     //Validate the entries
-    echo 'form submitted';
+    $validation = new UserValidator($_POST);
+    $errors = $validation->validateForm();
 
+    // save data to db
 }
 
 
@@ -32,12 +35,15 @@ if(isset($_POST['submit'])){
         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 
             <label >Username:</label>
-            <input type="text" name="username">
+            <input type="text" name="username" value="<?php htmlspecialchars($_POST['username']) ?? '' ?>">
+            <div class="error">
+                <?php echo $errors['username'] ?? ''?>
+            </div>
 
 
             <label>Email:</label>
-            <input type="text" name="email">
-
+            <input type="text" name="email" value="<?php htmlspecialchars($_POST['email']) ?? '' ?>">>
+            <?php echo $errors['email'] ?? ''?>
 
             <input type="submit" value="submit" name="submit">
 
