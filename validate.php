@@ -35,14 +35,14 @@ if(isset($_POST['submit'])){
         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 
             <label >Username:</label>
-            <input type="text" name="username" value="<?php htmlspecialchars($_POST['username']) ?? '' ?>">
+            <input type="text" name="username" value="<?php htmlspecialchars($_POST['username'] ?? '') ?>">
             <div class="error">
                 <?php echo $errors['username'] ?? ''?>
             </div>
 
 
             <label>Email:</label>
-            <input type="text" name="email" value="<?php htmlspecialchars($_POST['email']) ?? '' ?>">>
+            <input type="text" name="email" value="<?php htmlspecialchars($_POST['email'] ?? '') ?>">
             <?php echo $errors['email'] ?? ''?>
 
             <input type="submit" value="submit" name="submit">
