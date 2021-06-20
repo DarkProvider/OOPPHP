@@ -27,6 +27,22 @@ class User{
         $this->email = $email;
     }
 
+    // This is used to clean up any objects wihtout a reference and then afterwards outputs the set value
+    public function __destruct(){
+
+        echo "The user $this->username was removed <br>";
+
+    }
+// The clone function will make an identical copy of the method/class mentioned. It will run for the instance that has been set up as it will make its own and continue working from there
+
+    public function __clone(){
+
+
+        $this->username = $this->username . '(cloned) <br>';
+
+    }
+
+
     public function addFriend(){
 
 
@@ -118,6 +134,13 @@ class AdminUser extends User{
 $userOne = new User('mario','mario@test.net');
 $userTwo = new User('Yoshi','Yoshi@test.net');
 $userThree = new AdminUser('Yoni','Yoni@test.net', 5);
+
+// This function will remove the refrence of the object
+// unset($userTwo);
+
+// The clone function will make an identical copy of the method/class mentioned
+$userFour = clone $userOne;
+echo $userFour->username;
 
 // Here we are accessing certain data out of the class after storing the object into a variable
 // echo $userOne->username . '<br>';
